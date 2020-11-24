@@ -3826,15 +3826,15 @@ the corresponding typedef name in \ref{atomics.syn}.
 \pnum
 Neither the \tcode{_Atomic} macro,
 nor any of the non-macro global namespace declarations,
-are provided by any C++ standard library header
+are provided by any \Cpp{} standard library header
 other than \libheader{stdatomic.h}.
 
 \pnum
 \recommended
 Implementations should ensure
-that C and C++ representations of atomic objects are compatible,
+that C and \Cpp{} representations of atomic objects are compatible,
 so that the same object can be accessed as both an \tcode{_Atomic(T)}
-from C code and an \tcode{atomic<T>} from C++ code.
+from C code and an \tcode{atomic<T>} from \Cpp{} code.
 The representations should be the same, and
 the mechanisms used to ensure atomicity and memory ordering
 should be compatible.
