@@ -21142,7 +21142,7 @@ format_error(const char* what_arg);
 
 \pnum
 Subclause \ref{stacktrace} describes components
-that C++ programs may use to store
+that \Cpp{} programs may use to store
 the stacktrace of the current thread of execution and
 query information about the stored stacktrace at runtime.
 
@@ -21236,8 +21236,8 @@ An object of type \tcode{stacktrace_entry} is either empty,
 or represents a stacktrace entry and
 provides operations for querying information about it.
 The class \tcode{stacktrace_entry} models
-\tcode{regular}\iref{concepts.object} and
-\tcode{three_way_comparable<strong_ordering>}\iref{cmp.concept}.
+\libconcept{regular}\iref{concepts.object} and
+\tcode{\libconcept{three_way_comparable}<strong_ordering>}\iref{cmp.concept}.
 
 \rSec3[stacktrace.entry.ctor]{Constructors}
 
@@ -21333,7 +21333,7 @@ uint_least32_t source_line() const;
 \begin{itemdescr}
 \pnum
 \returns
-0, or a 1-based line number that lexically relates to the evaluation
+\tcode{0}, or a 1-based line number that lexically relates to the evaluation
 represented by \tcode{*this}.
 If \tcode{source_file} returns the presumed name of the source file,
 returns the presumed line number;
@@ -21436,17 +21436,15 @@ the same stacktrace entry or both \tcode{x} and \tcode{y} are empty.
   private:
     vector<value_type, allocator_type> frames_;         // \expos
   };
-
 }
 \end{codeblock}
 
 \pnum
 The class template \tcode{basic_stacktrace} satisfies
 the requirements of
-an allocator-aware container,
-a sequence container and
-a reversible container
-(\ref{container.requirements.general}, \ref{sequence.reqmts})
+an allocator-aware container (\tref{container.alloc.req}),
+a sequence container\iref{sequence.reqmts}, and
+a reversible container\iref{container.requirements.general}
 except that
 \begin{itemize}
 \item
@@ -21527,7 +21525,7 @@ A \tcode{basic_stacktrace} object
 where \tcode{frames_} is direct-non-list-initialized from arguments
 \tcode{t.begin() + min(n, skip)}, \tcode{t.begin() + min(n, skip + max_depth)},
 and \tcode{alloc},
-or an empty basic_stacktrace object
+or an empty \tcode{basic_stacktrace} object
 if the initialization of \tcode{frames_} failed.
 \end{itemdescr}
 
@@ -21587,7 +21585,7 @@ using const_iterator = @\impdef@;
 \begin{itemdescr}
 \pnum
 The type models
-\tcode{random_access_iterator}\iref{iterator.concept.random.access} and
+\libconcept{random_access_iterator}\iref{iterator.concept.random.access} and
 meets the
 \oldconcept{RandomAccessIterator} requirements\iref{random.access.iterators}.
 \end{itemdescr}
@@ -21815,7 +21813,7 @@ The number of lines is not guaranteed to be equal to \tcode{st.size()}.
 \end{note}
 \end{itemdescr}
 
-\indexlibrarymember{operator<<}{basic_stacktrace}%
+\indexlibrarymember{operator<<}{stacktrace_entry}%
 \begin{itemdecl}
 template<class charT, class traits>
 basic_ostream<charT, traits>&
@@ -21828,6 +21826,7 @@ basic_ostream<charT, traits>&
 Equivalent to: \tcode{return os << to_string(f);}
 \end{itemdescr}
 
+\indexlibrarymember{operator<<}{basic_stacktrace}%
 \begin{itemdecl}
 template<class charT, class traits, class Allocator>
 basic_ostream<charT, traits>&
